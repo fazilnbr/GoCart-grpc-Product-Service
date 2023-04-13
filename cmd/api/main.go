@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/fazilnbr/banking-grpc-account-service/pkg/config"
-	// "github.com/fazilnbr/banking-grpc-account-service/pkg/di"
+	"github.com/fazilnbr/banking-grpc-account-service/pkg/di"
 )
 
 func main() {
@@ -15,10 +15,10 @@ func main() {
 	}
 	fmt.Println("config : ", config)
 
-	// server, diErr := di.InitializeAPI(config)
-	// if diErr != nil {
-	// 	log.Fatal("cannot start server: ", diErr)
-	// } else {
-	// 	server.Start()
-	// }
+	server, diErr := di.InitializeAPI(config)
+	if diErr != nil {
+		log.Fatal("cannot start server: ", diErr)
+	} else {
+		server.Start()
+	}
 }
