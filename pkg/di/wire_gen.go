@@ -22,9 +22,9 @@ func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	if err != nil {
 		return nil, err
 	}
-	userRepository := repository.NewUserRepository(gormDB)
-	userUseCase := usecase.NewUserUseCase(userRepository)
-	productService := services.NewProductService(userUseCase)
+	productRepository := repository.NewProductDatabase(gormDB)
+	productUseCase := usecase.NewproductUseCase(productRepository)
+	productService := services.NewProductService(productUseCase)
 	serverHTTP := http.NewServerHTTP(productService)
 	return serverHTTP, nil
 }

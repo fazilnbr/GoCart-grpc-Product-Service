@@ -5,12 +5,12 @@ import (
 	interfaces "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase/interface"
 )
 
-type userUseCase struct {
-	userRepo repository.UserRepository
+type productUseCase struct {
+	userRepo repository.ProductRepository
 }
 
-func NewUserUseCase(repo repository.UserRepository) interfaces.UserUseCase {
-	return &userUseCase{
+func NewproductUseCase(repo repository.ProductRepository) interfaces.ProductUseCase {
+	return &productUseCase{
 		userRepo: repo,
 	}
 }

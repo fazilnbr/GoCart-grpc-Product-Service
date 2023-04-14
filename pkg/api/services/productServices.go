@@ -5,10 +5,10 @@ import (
 )
 
 type ProductService struct {
-	userUseCase usecase.UserUseCase
+	userUseCase usecase.ProductUseCase
 }
 
-func NewProductService(usecase usecase.UserUseCase) *ProductService {
+func NewProductService(usecase usecase.ProductUseCase) *ProductService {
 	return &ProductService{
 		userUseCase: usecase,
 	}
