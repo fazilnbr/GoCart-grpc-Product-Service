@@ -7,6 +7,7 @@ option go_package = "./pkg/pb";
 service ProductService {
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
   rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+  rpc ListProduct(ListProductRequest) returns (ListProductResponse) {}
 }
 
 // CreateProduct
@@ -35,6 +36,27 @@ message GetProductRequest {
 message GetProductResponse {
   int64 status = 1;
   string error = 2;
+  int64 Id =3 ;
+  string Name =4 ;
+  string Description =5 ;
+  float Price =6 ;
+  int64 Stock =7 ;
+}
+
+// ListProduct
+
+message ListProductRequest {
+  int64 Id = 1;
+  
+}
+
+message ListProductResponse {
+  int64 status = 1;
+  string error = 2;
+  repeated Products products =3;
+}
+
+message Products {
   int64 Id =3 ;
   string Name =4 ;
   string Description =5 ;
