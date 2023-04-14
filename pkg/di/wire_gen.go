@@ -7,12 +7,12 @@
 package di
 
 import (
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/api"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/api/handler"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/config"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/db"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/repository"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/usecase"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/db"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase"
 )
 
 // Injectors from wire.go:
@@ -22,9 +22,9 @@ func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	if err != nil {
 		return nil, err
 	}
-	userRepository := repository.NewUserRepository(gormDB)
-	userUseCase := usecase.NewUserUseCase(userRepository)
-	userHandler := handler.NewUserHandler(userUseCase)
-	serverHTTP := http.NewServerHTTP(userHandler)
+	productRepository := repository.NewProductDatabase(gormDB)
+	productUseCase := usecase.NewproductUseCase(productRepository)
+	productService := services.NewProductService(productUseCase)
+	serverHTTP := http.NewServerHTTP(productService)
 	return serverHTTP, nil
 }

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/config"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/di"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/di"
 )
 
 func main() {

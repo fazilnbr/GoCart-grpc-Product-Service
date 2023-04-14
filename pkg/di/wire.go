@@ -4,20 +4,20 @@
 package di
 
 import (
-	http "github.com/fazilnbr/banking-grpc-account-service/pkg/api"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/api/handler"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/config"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/db"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/repository"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/usecase"
+	http "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/db"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase"
 	"github.com/google/wire"
 )
 
 func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	wire.Build(db.ConnectDatabase,
-		repository.NewUserRepository,
-		usecase.NewUserUseCase,
-		handler.NewUserHandler,
+		repository.NewProductDatabase,
+		usecase.NewproductUseCase,
+		services.NewProductService,
 		http.NewServerHTTP)
 
 	return &http.ServerHTTP{}, nil
