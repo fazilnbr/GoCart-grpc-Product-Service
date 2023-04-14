@@ -9,6 +9,7 @@ service ProductService {
   rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
   rpc ListProduct(ListProductRequest) returns (ListProductResponse) {}
   rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
 }
 
 // CreateProduct
@@ -76,4 +77,17 @@ message UpdateProductResponse {
 int64 status = 1;
 string error = 2;
 int64 id = 3;
+}
+
+// DeleteProduct
+
+message DeleteProductRequest {
+  int64 Id = 1;
+  
+}
+
+message DeleteProductResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 Id =3 ;
 }
