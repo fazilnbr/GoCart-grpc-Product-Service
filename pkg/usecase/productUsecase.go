@@ -12,6 +12,11 @@ type productUseCase struct {
 	userRepo repository.ProductRepository
 }
 
+// DeleteProduct implements interfaces.ProductUseCase
+func (p *productUseCase) DeleteProduct(ctx context.Context, id int64) error {
+	return p.userRepo.DeleteProduct(ctx, id)
+}
+
 // UpdateProduct implements interfaces.ProductUseCase
 func (p *productUseCase) UpdateProduct(ctx context.Context, product domain.Product) (int64, error) {
 	id, err := p.userRepo.UpdateProduct(ctx, product)

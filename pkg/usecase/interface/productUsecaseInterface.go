@@ -11,4 +11,5 @@ type ProductUseCase interface {
 	GetProduct(ctx context.Context, id int64) (domain.Product, error)
 	ListProducts(ctx context.Context) ([]domain.Product, error)
 	UpdateProduct(ctx context.Context, product domain.Product) (int64, error)
+	DeleteProduct(ctx context.Context, id int64) error
 }
