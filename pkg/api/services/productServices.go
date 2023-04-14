@@ -13,6 +13,21 @@ type ProductService struct {
 	userUseCase usecase.ProductUseCase
 }
 
+func (p *ProductService) DeleteProduct(ctx context.Context, req *pb.DeleteProductRequest) (*pb.DeleteProductResponse, error) {
+	err := p.userUseCase.DeleteProduct(ctx, req.Id)
+	if err != nil {
+		return &pb.DeleteProductResponse{
+			Status: http.StatusUnprocessableEntity,
+			Error:  err.Error(),
+		}, err
+	}
+
+	return &pb.DeleteProductResponse{
+		Status: http.StatusOK,
+		Id:     req.Id,
+	}, nil
+}
+
 func (p *ProductService) UpdateProduct(ctx context.Context, req *pb.UpdateProductRequest) (*pb.UpdateProductResponse, error) {
 	product := domain.Product{
 		Id:          req.Id,

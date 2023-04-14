@@ -13,6 +13,12 @@ type productDatabase struct {
 	DB *gorm.DB
 }
 
+// DeleteProduct implements interfaces.ProductRepository
+func (p *productDatabase) DeleteProduct(ctx context.Context, id int64) error {
+	var product domain.Product
+	return p.DB.Where("id = ?", id).Delete(&product).Error
+}
+
 // UpdateProduct implements interfaces.ProductRepository
 func (p *productDatabase) UpdateProduct(ctx context.Context, product domain.Product) (int64, error) {
 	result := p.DB.Save(&product)
