@@ -12,10 +12,16 @@ type productUseCase struct {
 	userRepo repository.ProductRepository
 }
 
+// ListProducts implements interfaces.ProductUseCase
+func (p *productUseCase) ListProducts(ctx context.Context) ([]domain.Product, error) {
+	products, err := p.userRepo.ListProducts(ctx)
+	return products, err
+}
+
 // GetProduct implements interfaces.ProductUseCase
 func (p *productUseCase) GetProduct(ctx context.Context, id int64) (domain.Product, error) {
-	product,err:=p.userRepo.GetProduct(ctx,id)
-	return product,err
+	product, err := p.userRepo.GetProduct(ctx, id)
+	return product, err
 }
 
 // CreateProduct implements interfaces.ProductUseCase
