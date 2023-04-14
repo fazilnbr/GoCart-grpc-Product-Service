@@ -33,7 +33,7 @@ func NewGRPCServer(ProductService *services.ProductService, grpcPort string) {
 
 func NewServerHTTP(userHandler *services.ProductService) *ServerHTTP {
 	engine := gin.New()
-	go NewGRPCServer(userHandler, "50081")
+	go NewGRPCServer(userHandler, "50082")
 	// Use logger from Gin
 	engine.Use(gin.Logger())
 
@@ -41,5 +41,5 @@ func NewServerHTTP(userHandler *services.ProductService) *ServerHTTP {
 }
 
 func (sh *ServerHTTP) Start() {
-	sh.engine.Run(":8000")
+	sh.engine.Run(":8001")
 }
