@@ -13,6 +13,17 @@ type productDatabase struct {
 	DB *gorm.DB
 }
 
+// ListProducts implements interfaces.ProductRepository
+func (p *productDatabase) ListProducts(ctx context.Context) ([]domain.Product, error) {
+	var products []domain.Product
+	result := p.DB.Find(&products)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, errors.New("there is no product to desplay")
+	}
+	return products, result.Error
+
+}
+
 // GetProduct implements interfaces.ProductRepository
 func (p *productDatabase) GetProduct(ctx context.Context, id int64) (domain.Product, error) {
 	var product domain.Product

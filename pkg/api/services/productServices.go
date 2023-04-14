@@ -13,6 +13,35 @@ type ProductService struct {
 	userUseCase usecase.ProductUseCase
 }
 
+func (p *ProductService) ListProduct(ctx context.Context, req *pb.ListProductRequest) (*pb.ListProductResponse, error) {
+
+	products, err := p.userUseCase.ListProducts(ctx)
+
+	if err != nil {
+		return &pb.ListProductResponse{
+			Status:   http.StatusUnprocessableEntity,
+			Error:    err.Error(),
+			Products: nil,
+		}, err
+	}
+
+	var pbProducts []*pb.Product
+	for _, p := range products {
+		pbProducts = append(pbProducts, &pb.Product{
+			Id:          p.Id,
+			Name:        p.Name,
+			Description: p.Description,
+			Price:       p.Price,
+			Stock:       p.Stock,
+		})
+	}
+	return &pb.ListProductResponse{
+		Status:   http.StatusOK,
+		Products: pbProducts,
+	}, err
+
+}
+
 func (p *ProductService) GetProduct(ctx context.Context, req *pb.GetProductRequest) (*pb.GetProductResponse, error) {
 	product, err := p.userUseCase.GetProduct(ctx, req.Id)
 	if err != nil {
@@ -38,7 +67,7 @@ func (p *ProductService) CreateProduct(ctx context.Context, req *pb.CreateProduc
 		Id:          req.Id,
 		Name:        req.Name,
 		Description: req.Description,
-		Price:       float64(req.Price),
+		Price:       float32(req.Price),
 		Stock:       req.Stock,
 	}
 	id, err := p.userUseCase.CreateProduct(ctx, product)
