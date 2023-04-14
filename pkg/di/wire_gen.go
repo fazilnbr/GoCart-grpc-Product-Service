@@ -8,7 +8,7 @@ package di
 
 import (
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api"
-	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/handler"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/db"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository"
@@ -24,7 +24,7 @@ func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	}
 	userRepository := repository.NewUserRepository(gormDB)
 	userUseCase := usecase.NewUserUseCase(userRepository)
-	userHandler := handler.NewUserHandler(userUseCase)
-	serverHTTP := http.NewServerHTTP(userHandler)
+	productService := services.NewProductService(userUseCase)
+	serverHTTP := http.NewServerHTTP(productService)
 	return serverHTTP, nil
 }

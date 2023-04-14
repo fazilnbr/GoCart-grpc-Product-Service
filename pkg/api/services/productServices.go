@@ -1,15 +1,15 @@
-package handler
+package services
 
 import (
 	usecase "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase/interface"
 )
 
-type UserHandler struct {
+type ProductService struct {
 	userUseCase usecase.UserUseCase
 }
 
-func NewUserHandler(usecase usecase.UserUseCase) *UserHandler {
-	return &UserHandler{
+func NewProductService(usecase usecase.UserUseCase) *ProductService {
+	return &ProductService{
 		userUseCase: usecase,
 	}
 }

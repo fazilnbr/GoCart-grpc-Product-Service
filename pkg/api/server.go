@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-		"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/handler"
+		"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 )
@@ -14,7 +14,7 @@ type ServerHTTP struct {
 	engine *gin.Engine
 }
 
-func NewGRPCServer(userHandler *handler.UserHandler, grpcPort string) {
+func NewGRPCServer(userHandler *services.ProductService, grpcPort string) {
 	lis, err := net.Listen("tcp", ":"+grpcPort)
 	fmt.Println("grpcPort/////", grpcPort)
 	if err != nil {
@@ -30,7 +30,7 @@ func NewGRPCServer(userHandler *handler.UserHandler, grpcPort string) {
 	}
 }
 
-func NewServerHTTP(userHandler *handler.UserHandler) *ServerHTTP {
+func NewServerHTTP(userHandler *services.ProductService) *ServerHTTP {
 	engine := gin.New()
 	go NewGRPCServer(userHandler, "50081")
 	// Use logger from Gin

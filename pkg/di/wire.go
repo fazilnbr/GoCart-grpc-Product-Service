@@ -5,7 +5,7 @@ package di
 
 import (
 	http "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api"
-	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/handler"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/db"
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository"
@@ -17,7 +17,7 @@ func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	wire.Build(db.ConnectDatabase,
 		repository.NewUserRepository,
 		usecase.NewUserUseCase,
-		handler.NewUserHandler,
+		services.NewProductService,
 		http.NewServerHTTP)
 
 	return &http.ServerHTTP{}, nil
