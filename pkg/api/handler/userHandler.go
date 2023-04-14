@@ -1,7 +1,7 @@
 package handler
 
 import (
-	usecase "github.com/fazilnbr/banking-grpc-account-service/pkg/usecase/interface"
+	usecase "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase/interface"
 )
 
 type UserHandler struct {

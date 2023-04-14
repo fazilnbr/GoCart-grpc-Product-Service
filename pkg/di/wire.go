@@ -4,12 +4,12 @@
 package di
 
 import (
-	http "github.com/fazilnbr/banking-grpc-account-service/pkg/api"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/api/handler"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/config"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/db"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/repository"
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/usecase"
+	http "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/handler"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/config"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/db"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase"
 	"github.com/google/wire"
 )
 

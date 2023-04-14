@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	repository "github.com/fazilnbr/banking-grpc-account-service/pkg/repository/interface"
-	interfaces "github.com/fazilnbr/banking-grpc-account-service/pkg/usecase/interface"
+	repository "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository/interface"
+	interfaces "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/usecase/interface"
 )
 
 type userUseCase struct {

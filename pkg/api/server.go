@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/fazilnbr/banking-grpc-account-service/pkg/api/handler"
+		"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/handler"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 )
