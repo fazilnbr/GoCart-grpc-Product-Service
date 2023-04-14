@@ -5,7 +5,8 @@ import (
 	"log"
 	"net"
 
-		"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/api/services"
+	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/pb"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 )
@@ -14,7 +15,7 @@ type ServerHTTP struct {
 	engine *gin.Engine
 }
 
-func NewGRPCServer(userHandler *services.ProductService, grpcPort string) {
+func NewGRPCServer(ProductService *services.ProductService, grpcPort string) {
 	lis, err := net.Listen("tcp", ":"+grpcPort)
 	fmt.Println("grpcPort/////", grpcPort)
 	if err != nil {
@@ -23,7 +24,7 @@ func NewGRPCServer(userHandler *services.ProductService, grpcPort string) {
 
 	grpcServer := grpc.NewServer()
 
-	// pb.RegisterAuthServiceServer(grpcServer, userHandler)
+	pb.RegisterProductServiceServer(grpcServer, ProductService)
 
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
