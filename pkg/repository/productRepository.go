@@ -12,9 +12,16 @@ type productDatabase struct {
 	DB *gorm.DB
 }
 
+// GetProduct implements interfaces.ProductRepository
+func (p *productDatabase) GetProduct(ctx context.Context, id int64) (domain.Product, error) {
+	var product domain.Product
+	err := p.DB.Where("id =", id).First(&product).Error
+	return product, err
+}
+
 // CreateProduct implements interfaces.ProductRepository
-func (c *productDatabase) CreateProduct(ctx context.Context, product domain.Product) (int64, error) {
-	err := c.DB.Create(&product).Error
+func (p *productDatabase) CreateProduct(ctx context.Context, product domain.Product) (int64, error) {
+	err := p.DB.Create(&product).Error
 	return product.Id, err
 }
 
