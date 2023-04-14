@@ -45,21 +45,18 @@ message GetProductResponse {
 
 // ListProduct
 
-message ListProductRequest {
-  int64 Id = 1;
-  
-}
+message ListProductRequest {}
 
 message ListProductResponse {
   int64 status = 1;
   string error = 2;
-  repeated Products products =3;
+  repeated Product products =3;
 }
 
-message Products {
-  int64 Id =3 ;
-  string Name =4 ;
-  string Description =5 ;
-  float Price =6 ;
-  int64 Stock =7 ;
+message Product {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int64 stock = 5;
 }
