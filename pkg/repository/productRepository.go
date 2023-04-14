@@ -13,6 +13,12 @@ type productDatabase struct {
 	DB *gorm.DB
 }
 
+// UpdateProduct implements interfaces.ProductRepository
+func (p *productDatabase) UpdateProduct(ctx context.Context, product domain.Product) (int64, error) {
+	result := p.DB.Save(&product)
+	return product.Id, result.Error
+}
+
 // ListProducts implements interfaces.ProductRepository
 func (p *productDatabase) ListProducts(ctx context.Context) ([]domain.Product, error) {
 	var products []domain.Product

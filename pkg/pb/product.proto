@@ -8,6 +8,7 @@ service ProductService {
   rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
   rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
   rpc ListProduct(ListProductRequest) returns (ListProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
 }
 
 // CreateProduct
@@ -59,4 +60,20 @@ message Product {
   string description = 3;
   float price = 4;
   int64 stock = 5;
+}
+
+// UpdateProduct
+
+message UpdateProductRequest {
+  int64 Id =1 ;
+  string Name =2 ;
+  string Description =3 ;
+  float Price =4 ;
+  int64 Stock =5 ;
+}
+
+message UpdateProductResponse {
+int64 status = 1;
+string error = 2;
+int64 id = 3;
 }
