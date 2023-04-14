@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"errors"
 
 	"github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/domain"
 	interfaces "github.com/fazilnbr/GoCart-grpc-Product-Service/pkg/repository/interface"
@@ -12,9 +13,19 @@ type productDatabase struct {
 	DB *gorm.DB
 }
 
+// GetProduct implements interfaces.ProductRepository
+func (p *productDatabase) GetProduct(ctx context.Context, id int64) (domain.Product, error) {
+	var product domain.Product
+	err := p.DB.Where("id =", id).First(&product).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return domain.Product{}, errors.New("there is no product to desplay on this id")
+	}
+	return product, err
+}
+
 // CreateProduct implements interfaces.ProductRepository
-func (c *productDatabase) CreateProduct(ctx context.Context, product domain.Product) (int64, error) {
-	err := c.DB.Create(&product).Error
+func (p *productDatabase) CreateProduct(ctx context.Context, product domain.Product) (int64, error) {
+	err := p.DB.Create(&product).Error
 	return product.Id, err
 }
 
