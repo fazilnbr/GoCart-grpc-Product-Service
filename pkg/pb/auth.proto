@@ -1,1 +1,25 @@
 syntax = "proto3";
+
+package product;
+
+option go_package = "./pkg/pb";
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+}
+
+// CreateProduct
+
+message CreateProductRequest {
+    int64 Id =1 ;
+    string Name =2 ;
+    string Description =3 ;
+    float Price =4 ;
+    int64 Stock =5 ;
+}
+
+message CreateProductResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 id = 3;
+}
